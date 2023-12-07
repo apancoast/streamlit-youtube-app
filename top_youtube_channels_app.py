@@ -226,10 +226,15 @@ def main():
 
         # let's finally get those top channels
         top_5_df = no_ads.channel.value_counts().sort_values(ascending=False).head(5).reset_index().rename(columns={'index': 'channel', 'channel': 'counts'})
-
-        # Get channel links so we can get profile pictures
-        top_5_df = top_5_df = pd.merge(top_5_df, history_df[['channel', 'channel_url']], left_on='channel', right_on='channel', how='left').drop_duplicates().reset_index(drop=True)
+                # Get channel links so we can get profile pictures
         
+        if 'history_df' not in st.session_state:
+            st.session_state.history_df = history_df[['channel', 'channel_url']]
+        else:
+            st.session_state.history_df = pd.concat([st.session_state.history_df, history_df[['channel', 'channel_url']]])
+
+        top_5_df = pd.merge(top_5_df, st.session_state.history_df, on='channel', how='left').drop_duplicates().reset_index(drop=True)
+
         st.subheader("Your Top Channels")
         st.dataframe(top_5_df[['channel', 'counts']])
         
