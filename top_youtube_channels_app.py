@@ -8,6 +8,8 @@ from io import BytesIO
 import os
 import tempfile
 
+@st.cache(allow_output_mutation=True)
+
 # Function to process the uploaded file
 def process_file(uploaded_file):
     # Read the uploaded file
