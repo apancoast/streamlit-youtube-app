@@ -241,7 +241,7 @@ def main():
         top_5_df = process_file(uploaded_file)
 
         st.subheader("Your Top Channels")
-        st.dataframe(top_5_df, hide_index=True, column_order=('channel', 'counts'))
+        st.dataframe(top_5_df, hide_index=True) # , column_order=('channel', 'counts'))
         
         st.subheader("Choose a background image")
         col1, col2 = st.columns(2)
