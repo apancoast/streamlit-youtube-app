@@ -268,7 +268,7 @@ def main():
         # top_5_df = pd.merge(top_5_df, st.session_state.history_df, on='channel', how='left').drop_duplicates().reset_index(drop=True)
 
         st.subheader("Your Top Channels")
-        st.dataframe(top_5_df[['channel', 'counts']])
+        st.dataframe(top_5_df)
         
         st.subheader("Choose a background image")
         col1, col2 = st.columns(2)
