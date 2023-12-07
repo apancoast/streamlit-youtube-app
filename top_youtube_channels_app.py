@@ -229,11 +229,13 @@ def main():
                 # Get channel links so we can get profile pictures
         
         if 'history_df' not in st.session_state:
-            st.session_state.history_df = history_df[['channel', 'channel_url']]
-        else:
-            st.session_state.history_df = pd.concat([st.session_state.history_df, history_df[['channel', 'channel_url']]])
+            st.session_state.history_df = read_df()
+            history_df = st.session_state.history_df
 
         top_5_df = pd.merge(top_5_df, st.session_state.history_df, on='channel', how='left').drop_duplicates().reset_index(drop=True)
+
+        # Add 'channel_url' column from history_df
+        # top_5_df['channel_url'] = history_df.loc[history_df['channel'].isin(top_5_df['channel']), 'channel_url'].values
 
         st.subheader("Your Top Channels")
         st.dataframe(top_5_df[['channel', 'counts']])
