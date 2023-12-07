@@ -91,10 +91,8 @@ def process_file(uploaded_file):
     no_ads = no_dups[no_dups['ad'] == 'No']
 
     # let's finally get those top channels
-    top_5_df = no_ads.channel.value_counts().sort_values(ascending=False).head(5).reset_index().rename(columns={'index': 'channel', 'channel': 'counts'})
-    
-    # Get channel links so we can get profile pictures
-    top_5_df = pd.merge(top_5_df, history_df, on='channel', how='left').drop_duplicates().reset_index(drop=True)
+    top_5_df = no_ads[['channel', 'channel_url']].value_counts().sort_values(ascending=False).head(5).reset_index().rename(columns={0: 'counts'})
+
     return top_5_df
 
 def create_image(background_image, dataframe):
