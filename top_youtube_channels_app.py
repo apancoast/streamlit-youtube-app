@@ -230,7 +230,7 @@ def main():
         
         if 'history_df' not in st.session_state:
             st.session_state.history_df = read_df()
-            history_df = st.session_state.history_df
+        history_df = st.session_state.history_df
 
         top_5_df = pd.merge(top_5_df, st.session_state.history_df, on='channel', how='left').drop_duplicates().reset_index(drop=True)
 
