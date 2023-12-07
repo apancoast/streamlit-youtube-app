@@ -84,16 +84,16 @@ def process_file(uploaded_file):
     return history_df
     
 def get_top_5(dataframe):
-        no_dups = dataframe.drop_duplicates(subset='vid_url')
+    no_dups = dataframe.drop_duplicates(subset='vid_url')
 
-        # Unlikely a concern, but we'll remove ads just in case. Not going to catch ads that are from unlisted videos on brand channels
-        no_ads = no_dups[no_dups['ad'] == 'No']
+    # Unlikely a concern, but we'll remove ads just in case. Not going to catch ads that are from unlisted videos on brand channels
+    no_ads = no_dups[no_dups['ad'] == 'No']
 
-        # let's finally get those top channels
-        top_5_df = no_ads.channel.value_counts().sort_values(ascending=False).head(5).reset_index().rename(columns={'index': 'channel', 'channel': 'counts'})
+    # let's finally get those top channels
+    top_5_df = no_ads.channel.value_counts().sort_values(ascending=False).head(5).reset_index().rename(columns={'index': 'channel', 'channel': 'counts'})
 
-        # Get channel links so we can get profile pictures
-        top_5_df = pd.merge(top_5_df, history_df[['channel', 'channel_url']], on='channel', how='left').drop_duplicates().reset_index(drop=True)
+    # Get channel links so we can get profile pictures
+    top_5_df = pd.merge(top_5_df, history_df[['channel', 'channel_url']], on='channel', how='left').drop_duplicates().reset_index(drop=True)
     return top_5_df
 
 # Streamlit app
