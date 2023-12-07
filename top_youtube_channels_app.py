@@ -234,7 +234,11 @@ def get_channel_links(dataframe):
 
 # Streamlit app
 def main():
-    st.title("YouTube History Parser")
+    st.title("Top YouTube Channels Image Generator")
+    st.write('This app reads your YouTube watch history JSON file (available via [Google Takeout](https://takeout.google.com/), and generates an image with the results.')
+
+    st.subheader('Upload your watch history JSON to get started.')
+                
     uploaded_file = st.file_uploader("Upload a JSON file", type=['json'])
 
     if uploaded_file is not None:
