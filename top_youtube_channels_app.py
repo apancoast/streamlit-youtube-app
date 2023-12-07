@@ -104,7 +104,7 @@ def main():
     if uploaded_file is not None:
         try:
             history_df = process_file(uploaded_file)
-            top_5_df = get_top_get(history_df
+            top_5_df = get_top_get(history_df)
             st.dataframe(top_5_df[['channel', 'counts']])
         except (json.JSONDecodeError, KeyError) as e:
             st.error("Error processing the file. Please make sure it's a valid JSON file."
