@@ -156,7 +156,7 @@ def create_image(background_image, dataframe):
     for index, row in dataframe.iterrows():
         channel = row['channel']
         url = row['channel_url']
-        count = row['counts']
+        count = row['count']
 
         response = requests.get(url)
         html_content = response.content.decode('utf-8')
@@ -241,7 +241,7 @@ def main():
         top_5_df = process_file(uploaded_file)
 
         st.subheader("Your Top Channels")
-        st.dataframe(top_5_df, hide_index=True) # , column_order=('channel', 'counts'))
+        st.dataframe(top_5_df, hide_index=True, column_order=('channel', 'count'))
         
         st.subheader("Choose a background image")
         col1, col2 = st.columns(2)
