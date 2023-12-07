@@ -239,36 +239,9 @@ def main():
 
     if uploaded_file is not None:
         top_5_df = process_file(uploaded_file)
-        #no_dups = history_df.drop_duplicates(subset='vid_url')
-
-        # # Unlikely a concern, but we'll remove ads just in case. Not going to catch ads that are from unlisted videos on brand channels
-        # no_ads = no_dups[no_dups['ad'] == 'No']
-
-        # # let's finally get those top channels
-        # top_5_df = no_ads.channel.value_counts().sort_values(ascending=False).head(5).reset_index().rename(columns={'index': 'channel', 'channel': 'counts'})
-        
-        # # Get channel links so we can get profile pictures
-        # top_5_df = pd.merge(top_5_df, st.session_state.history_df, on='channel', how='left').drop_duplicates().reset_index(drop=True)
-        
-        # def do_something():
-        #     global df
-        #     df_new = pd.DataFrame({
-        #         'col1':[1,2],
-        #         'col3':["X","Y"]
-        #     })
-        #     df.drop(['col2'], axis = 1, inplace = True)
-        #     st.session_state.df = df.merge(df_new, on="col1")
-        
-        
-        # if 'history_df' not in st.session_state:
-        #     st.session_state.history_df = history_df[['channel', 'channel_url']]
-        # else:
-        #     st.session_state.history_df = pd.concat([st.session_state.history_df, history_df[['channel', 'channel_url']]])
-
-        # top_5_df = pd.merge(top_5_df, st.session_state.history_df, on='channel', how='left').drop_duplicates().reset_index(drop=True)
 
         st.subheader("Your Top Channels")
-        st.dataframe(top_5_df)
+        st.dataframe(top_5_df, hide_index=True, column_order=('channel', 'counts'))
         
         st.subheader("Choose a background image")
         col1, col2 = st.columns(2)
