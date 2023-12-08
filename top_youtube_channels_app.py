@@ -235,7 +235,7 @@ def get_channel_links(dataframe):
 # Streamlit app
 def main():
     st.title("Discover Your Top YouTube Channels")
-    st.write('This app reads your YouTube watch history JSON file (available via [Google Takeout](https://takeout.google.com/)), returns your top five channels with video counts, and generates an image with the results.')
+    st.write('This app reads your YouTube watch history JSON file (available via [Google Takeout](https://takeout.google.com/)), returns your top five channels with video counts, and generates an image with the results. If you have any issues, please feel free to contact me at pancoastashley@gmail.com.')
 
     st.subheader('Upload your watch history JSON to get started.')
                 
